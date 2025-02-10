@@ -1,0 +1,94 @@
+<!DOCTYPE html> 
+<html> 
+ 
+<head> 
+    <style> 
+        body { 
+            /* 设置为 flex 布局，内容水平垂直居中 */ 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            min-height: 100vh; 
+            margin: 0; 
+            background: #fff; 
+        } 
+ 
+       .card { 
+            width: 300px; 
+            height: 400px; 
+            background: #fff5f8; 
+            border-radius: 15px; 
+            position: relative; 
+            cursor: pointer; 
+            transition: 0.3s; 
+            /* 开启 flex 布局 */ 
+            display: flex; 
+            /* 垂直居中内容 */ 
+            align-items: center; 
+            /* 水平居中内容 */ 
+            justify-content: center; 
+            /* 溢出内容隐藏 */ 
+            overflow: hidden; 
+        } 
+ 
+       .card:hover::before { 
+            content: "❤"; 
+            position: absolute; 
+            color: #ff7eb6; 
+            font-size: 24px; 
+            animation: float 2s infinite; 
+        } 
+ 
+       .message { 
+            opacity: 0; 
+            padding: 20px; 
+            font-family: cursive; 
+            color: #d46a8e; 
+            transition: 0.5s; 
+        } 
+ 
+        @keyframes float { 
+            0%, 
+            100% { 
+                transform: translateY(0) 
+            } 
+ 
+            50% { 
+                transform: translateY(-10px) 
+            } 
+        } 
+ 
+       .hint { 
+            color: #ff7eb6; 
+            font-size: 36px; 
+            position: absolute; 
+            top: 50%; 
+            left: 50%; 
+            transform: translate(-50%, -50%); 
+            transition: opacity 0.3s; 
+        } 
+    </style> 
+</head> 
+ 
+<body> 
+    <div class="card" onclick="showMessage()"> 
+        <!-- 新增提示图标 --> 
+        <div class="hint">👉</div> 
+        <div class="message" id="msg"> 
+            <p>今天路过花店时，<br> 
+                发现春天的第一支郁金香开了，<br> 
+                突然想和你分享这个瞬间🌷</p> 
+        </div> 
+    </div> 
+ 
+    <script> 
+        function showMessage() { 
+            document.getElementById("msg").style.opacity  = 1; 
+            document.body.style.backgroundColor  = "#ffe6ee"; 
+            // 获取提示图标元素并将其透明度设为 0 
+            document.querySelector('.hint').style.opacity  = 0; 
+        } 
+    </script> 
+</body> 
+ 
+</html> 
