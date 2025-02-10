@@ -1,161 +1,98 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <title>情人节快乐！我的宝贝</title>
-    <style>
-        body {
-            margin: 0;
-            height: 100vh;
-            background: linear-gradient(45deg, #ff9aa2, #ffb7b2);
-            font-family: 'Microsoft Yahei', sans-serif;
-            overflow: hidden;
-            cursor: pointer;
-        }
-
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            text-align: center;
-            color: #fff;
-        }
-
-        .title {
-            font-size: 3em;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            animation: fadeIn 2s;
-        }
-
-        .heart {
-            position: absolute;
-            color: #ff3860;
-            animation: fall 3s linear infinite;
-        }
-
-        .photo-frame {
-            width: 300px;
-            height: 300px;
-            margin: 20px auto;
-            border-radius: 50%;
-            overflow: hidden;
-            border: 5px solid white;
-            box-shadow: 0 0 20px rgba(0,0,0,0.2);
-            transition: transform 0.3s;
-        }
-
-        .photo-frame:hover {
-            transform: rotate(360deg) scale(1.1);
-        }
-
-        .message {
-            font-size: 1.2em;
-            line-height: 1.6;
-            margin: 20px;
-            padding: 20px;
-            background: rgba(255,255,255,0.2);
-            border-radius: 10px;
-            backdrop-filter: blur(5px);
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes fall {
-            to {
-                transform: translateY(100vh) rotate(360deg);
-                opacity: 0;
-            }
-        }
-
-        .love-reasons {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin: 30px 0;
-        }
-
-        .reason-card {
-            background: rgba(255,255,255,0.9);
-            padding: 15px;
-            border-radius: 10px;
-            color: #ff3860;
-            transition: transform 0.3s;
-        }
-
-        .reason-card:hover {
-            transform: scale(1.05);
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1 class="title">❤️ 情人节快乐！我的宝贝 ❤️</h1>
-        
-        <div class="photo-frame">
-            <!-- 替换成你们的合照 -->
-            <img src="./static/大彬给给.png" alt="大彬给给" style="width:100%; height:100%; object-fit: cover;">
-        </div>
-
-        <div class="message">
-            <p>亲爱的[名字]：</p>
-            <p>在这个特别的日子里，我想告诉你...</p>
-            <p>遇见你是我一生最美好的幸运</p>
-            <p>愿未来的每一天都有你相伴 ❤</p>
-        </div>
-
-        <div class="love-reasons">
-            <div class="reason-card">你的笑容照亮我的世界</div>
-            <div class="reason-card">你总是让我感到温暖</div>
-            <div class="reason-card">和你在一起的每刻都值得珍藏</div>
-            <div class="reason-card">你让我成为更好的自己</div>
-        </div>
-    </div>
-
-    <script>
-        // 创建飘落爱心
-        function createHeart() {
-            const heart = document.createElement('div');
-            heart.innerHTML = '❤';
-            heart.classList.add('heart');
-            heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.animationDuration = Math.random() * 2 + 3 + 's';
-            document.body.appendChild(heart);
-
-            setTimeout(() => heart.remove(), 5000);
-        }
-
-        // 定时生成爱心
-        setInterval(createHeart, 300);
-
-        // 点击生成爱心
-        document.addEventListener('click', (e) => {
-            const clickHeart = document.createElement('div');
-            clickHeart.innerHTML = '❤';
-            clickHeart.style.position = 'absolute';
-            clickHeart.style.left = e.clientX + 'px';
-            clickHeart.style.top = e.clientY + 'px';
-            clickHeart.style.color = '#ff3860';
-            clickHeart.style.fontSize = '40px';
-            clickHeart.style.transition = 'transform 0.5s, opacity 0.5s';
-            document.body.appendChild(clickHeart);
-
-            setTimeout(() => {
-                clickHeart.style.transform = 'translateY(-100px) scale(2)';
-                clickHeart.style.opacity = '0';
-                setTimeout(() => clickHeart.remove(), 500);
-            }, 50);
-        });
-
-        // 文字动画
-        const reasons = document.querySelectorAll('.reason-card');
-        reasons.forEach((card, index) => {
-            setTimeout(() => {
-                card.style.animation = `fadeIn 0.5s ${index * 0.2}s both`;
-            }, 500);
-        });
-    </script>
-</body>
-</html>
+<!DOCTYPE html> 
+<html lang="zh-CN"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>权限校验页面</title> 
+    <link rel="stylesheet" href="style.css">
+	<style>
+	body { 
+	    font-family: Arial, sans-serif; 
+	    display: flex; 
+	    justify-content: center; 
+	    align-items: center; 
+	    height: 100vh; 
+	    margin: 0; 
+	    background-color: #f0f0f0; 
+	} 
+	 
+	.container { 
+	    text-align: center; 
+	    background-color: #fff; 
+	    padding: 20px; 
+	    border-radius: 8px; 
+	    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+	} 
+	 
+	h1 { 
+	    margin-bottom: 20px; 
+	} 
+	 
+	form { 
+	    display: flex; 
+	    flex-direction: column; 
+	} 
+	 
+	label { 
+	    margin-bottom: 5px; 
+	} 
+	 
+	input { 
+	    padding: 10px; 
+	    margin-bottom: 15px; 
+	    border: 1px solid #ccc; 
+	    border-radius: 4px; 
+	} 
+	 
+	button { 
+	    padding: 10px; 
+	    border: none; 
+	    border-radius: 4px; 
+	    background-color: #007BFF; 
+	    color: #fff; 
+	    cursor: pointer; 
+	} 
+	 
+	button:hover { 
+	    background-color: #0056b3; 
+	} 
+	 
+	#message { 
+	    margin-top: 20px; 
+	    font-size: 18px; 
+	    color: red; 
+	} 
+	</style>
+</head> 
+<body> 
+    <div class="container"> 
+        <h1>权限校验</h1> 
+        <form id="permissionForm"> 
+            <label for="inputCommand">请输入指令：</label> 
+            <input type="text" id="inputCommand" name="command" required autocomplete="off"> 
+            <button type="submit">提交</button> 
+        </form> 
+        <p id="message"></p> 
+    </div> 
+    <script src="script.js"></script>
+	<script>
+	document.getElementById('permissionForm').addEventListener('submit',  function(event) { 
+	    event.preventDefault();  
+	 
+	    const inputCommand = document.getElementById('inputCommand').value;  
+	    const message = document.getElementById('message');  
+	 
+	    // 假设正确的指令是 "admin" 
+	    const correctCommand = "可可爱爱的陈璐同学"; 
+	 
+	    if (inputCommand === correctCommand) { 
+	        // 跳转到其他页面 
+	        window.location.href  = "nav.html"; 
+	    } else { 
+	        // 提示指令错误 
+	        message.textContent  = "指令错误，请重新输入！"; 
+	    } 
+	}); 
+	</script>
+</body> 
+</html> 
